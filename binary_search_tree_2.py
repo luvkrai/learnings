@@ -1,8 +1,9 @@
 class node():
     def __init__(self,value):
-	    self.value = value
-	    self.left_child = None
-	    self.right_child = None
+      self.value = value
+      self.left_child = None
+      self.right_child = None
+      self.parent = None
 
 class binary_search_tree():
     def __init__(self):
@@ -17,11 +18,13 @@ class binary_search_tree():
         if value < cur_node.value:
             if cur_node.left_child == None:
                 cur_node.left_child = node(value)
+                cur_node.left_child.parent = cur_node
             else:
                 self._insert(value,cur_node.left_child)
         elif value > cur_node.value:
             if cur_node.right_child == None:
                 cur_node.right_child = node(value)
+                cur_node.right_child.parent = cur_node
             else:
                 self._insert(value,cur_node.right_child)
         else:
@@ -60,7 +63,63 @@ class binary_search_tree():
             return self._search(value,cur_node.right_child)
         else:
             return False
-        
+    def delete(self,value):
+        if self.root.value == value:
+          self.root = None
+        else:
+          self._delete_node(self.find_node(value))
+    def _delete_node(self,node):
+        def min_value_node(n):
+            current_node = n
+            while current_node.left_child != None:
+              current_node = current_node.left_child
+            return current_node
+        def num_of_child(n):
+          if n.left_child == None and n.right_child == None:
+            return 0
+          if n.left_child != None and n.right_child != None:
+            return 2
+          else:
+            return 1
+        nu_child = num_of_child(node)
+        if nu_child == 0:
+          parent = node.parent
+          if parent.left_child==node:
+            parent.left_child = None
+          else:
+            parent.right_child = None
+        if nu_child == 1:
+          parent = node.parent
+          if node.left_child != None:
+            if parent.left_child == node:
+              parent.left_child = node.left_child
+            else:
+              parent.right_child = node.left_child
+            node.left_child.parent = parent
+          else:
+            if parent.right_child == node:
+              parent.right_child = node.right_child
+            else:
+              parent.right_child = node.right_child
+            node.right_child.parent = parent
+        if nu_child == 2:
+          min_node = min_value_node(node.right_child)
+          node.value = min_node.value
+          self._delete_node(min_node)
+    def find_node(self,value):
+      if self.root == None:
+        return None
+      else:
+        return self._find_node(value,self.root)
+    def _find_node(self,value,cur_node):
+        if value==cur_node.value:
+            return cur_node
+        elif value < cur_node.value and cur_node.left_child != None:
+            return self._find_node(value,cur_node.left_child)
+        elif value > cur_node.value and cur_node.right_child != None:
+            return self._find_node(value,cur_node.right_child)
+        else:
+            return None
 tree = binary_search_tree()
 from random import randint
 for _ in range(20):
@@ -74,3 +133,5 @@ n=201
 if tree.search(n): print("Value {} is present".format(n))
 else:
     print("Value {} is not present".format(n))
+tree.delete(24)
+tree.print_tree()

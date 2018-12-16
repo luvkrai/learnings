@@ -11,17 +11,11 @@ class open_class():
 		
     def __exit__(self,exec_type,exec_eval,traceback):
 	    self.file.close()
-		
-
-		
+			
 with open_class('test.txt','w') as f:
     f.write("testing")
-
 	
 print(f.closed)
-
-
-
 
 @contextmanager
 def open_func(filename,mode):
@@ -30,7 +24,6 @@ def open_func(filename,mode):
         yield f
     finally:
         f.close()
-	
 
 with open_func('test.txt','w') as f:
     f.write("testing")

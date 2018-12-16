@@ -1,16 +1,10 @@
-str1 = "abcabc"
-mid = int((len(str1)+1)/2)
-print(mid)
-flag=True
+l = "geeksskeeg"
+mid = int(len(l)/2+1)
 for i in range(0,mid):
-    if str1[i] == str1[mid]:
-        pass
-    else:
-        flag=False
-        break
-    mid+=1
-if flag:
-    print("Yes")
+  if l[i] == l[len(l)-i-1]:
+     pass
+  else:
+    print("Not a palindrome")
+    break
 else:
-    print("No")
-
+  print("palindrome")

@@ -8,4 +8,7 @@ for item in list:
             dic[item]=1 
 
 print(dic)
+for key,value in dic.items():
+    if value > 1:
+        print(key)
 
