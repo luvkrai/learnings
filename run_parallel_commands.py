@@ -5,7 +5,7 @@ from multiprocessing.dummy import Pool
 def run(server):
  try:
     s = pxssh.pxssh(timeout=30)
-    s.login(server, "root", "Coolbeans!")
+    s.login(server, "root", "###!")
     s.sendline("docker ps -a")
     s.prompt()             # match the prompt
     output = "Server: "+server+"\n"+ s.before
