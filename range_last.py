@@ -29,7 +29,7 @@ def f(input):
       second_range = findSecondRange(curNum)
       # This means, number can be put into two different range pairs, so we update one pair and delete the other (union n shit)
       # 3 --> (1,2) (4,5), here 2 can be second range of the first pair or first range of the second pair
-      # so we'll can simply take the min and max value in the ranges (as 3 will fall in between) and delete the second pair
+      # so we can simply take the min and max value in the ranges (as 3 will fall in between) and delete the second pair
       # (1,2*)<-->(*4,5) == (1,5) (min and max of the original pair which is first number of the first pair and second member of the second pair
       if first_range != False and second_range != False:
           first_range.second = second_range.second

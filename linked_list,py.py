@@ -1,41 +1,47 @@
-
-class node():
+class Node:
   def __init__(self,data=None):
     self.data = data
     self.next = None
 
-class linkedList():
+class LinkedList:
   def __init__(self):
-     self.head = node()
-  def append(self,data):
-    new_node = node(data)
+    self.head = None
+  def insert(self,data):
+    new_node = Node(data)
+    if self.head == None:
+      self.head = new_node
+    else:
+      cur_node = self.head
+      while cur_node.next!=None:
+        cur_node = cur_node.next
+      cur_node.next = new_node
+  def print(self):
     cur_node = self.head
-    while cur_node.next!=None:
+    while cur_node!=None:
+      print(cur_node.data,"->",end='')
       cur_node = cur_node.next
-    cur_node.next = new_node
 
-  def print_linked_list(self):
+  def reverse(self):
+    prev_node = None
     cur_node = self.head
-    while cur_node.next!=None:
-      cur_node = cur_node.next
-      print(cur_node.data)
-  def erase(self,data):
-    cur_node = self.head
-    while cur_node.next!=None:
-      last_node = cur_node
-      cur_node = cur_node.next
-      if cur_node.data == data:
-          last_node.next = cur_node.next
-          return True 
+    while cur_node!=None:
+      next = cur_node.next
+      cur_node.next = prev_node
+      prev_node = cur_node
+      cur_node = next
+    self.head = prev_node
+  def head_p(self):
+    print(self.head.data)
 
+l = LinkedList()
 
-
-l_list = linkedList()
-l_list.append(1)
-l_list.append(3)
-l_list.append(5)
-l_list.append(6)
-l_list.append(7)
-l_list.print_linked_list()
-l_list.erase(3)
-l_list.print_linked_list()
+l.insert(1)
+l.insert(2)
+l.insert(3)
+l.insert(4)
+l.insert(5)
+l.print()
+print()
+l.reverse()
+l.print()
+#l.head_p()
