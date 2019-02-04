@@ -5,7 +5,7 @@ for i in range(4,16):
  try:
     s = pxssh.pxssh(timeout=1)
     server_name = "uls-ep-swtools-%s" % str(i).zfill(2)
-    s.login(server_name, "root", "Coolbeans!")
+    s.login(server_name, "root", "###!")
     #s.sendline('ifconfig | grep -E "([0-9]{1,3}\.){3}[0-9]{1,3}" | grep -v 127.0.0.1 | awk \'{ print $2 }\' | cut -f2 -d: | head -1')   # run a command
     print("Server: "+server_name+"\n")
     s.sendline("""
