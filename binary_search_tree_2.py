@@ -100,7 +100,7 @@ class binary_search_tree():
             if parent.right_child == node:
               parent.right_child = node.right_child
             else:
-              parent.right_child = node.right_child
+              parent.left_child = node.right_child
             node.right_child.parent = parent
         if nu_child == 2:
           min_node = min_value_node(node.right_child)

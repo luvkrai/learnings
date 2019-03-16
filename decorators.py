@@ -11,6 +11,11 @@ class outer_class():
     def __call__(self,*args,**kwargs):
         print("Hacked from classes")
         return self.func(*args,**kwargs)
+		
+		
+#display = outer_func(display)
+#display(1,2)
+
 @outer_func
 def display1(a,b):
     print("I just display {} {}".format(a,b))
