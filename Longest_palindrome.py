@@ -9,4 +9,3 @@ for i in range(0,len(s)):
       f_dic[len(sub_string)] = sub_string
 x = max(f_dic.keys())
 print(f_dic[x])
-print(f_dic[x])
