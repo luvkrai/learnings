@@ -9,8 +9,8 @@ def fun(message, client):
     for line in container.logs(stream=True):
         print (line.strip())
 
-client1 = docker.DockerClient(base_url='tcp://uls-ep-essd25.wdc.com:2375', tls=False)
-client2 = docker.DockerClient(base_url='tcp://uls-ep-essd26.wdc.com:2375', tls=False)
+client1 = docker.DockerClient(base_url='tcp://uls-ep-essd25:2375', tls=False)
+client2 = docker.DockerClient(base_url='tcp://uls-ep-essd26:2375', tls=False)
 messages= ["c4ca4238a0b923820dcc509a6f75849b", "c4ca4238a0b923820dcc509a6f758491", "c4ca4238a0b923820dcc509a6f75849c", "c4ca4238a0b923820dcc509a6f75849d", "c4ca4238a0b923820dcc509a6f75849b", "c4ca4238a0b923820dcc509a6f758491", "c4ca4238a0b923820dcc509a6f75849c", "c4ca4238a0b923820dcc509a6f75849d", "c4ca4238a0b923820dcc509a6f75849b", "c4ca4238a0b923820dcc509a6f758491", "c4ca4238a0b923820dcc509a6f75849c", "c4ca4238a0b923820dcc509a6f75849d"]
 pool = ThreadPoolExecutor(50)
 clients = [client1, client2]
